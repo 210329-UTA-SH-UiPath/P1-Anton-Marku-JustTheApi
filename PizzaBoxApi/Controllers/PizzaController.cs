@@ -26,6 +26,12 @@ namespace PizzaBoxApi.Controllers
             return _repository.GetPresets();
         }
 
+        [HttpGet("{id}")]
+        public List<Pizza> GetAll(int id)
+        {
+            return _repository.GetAll();
+        }
+
         [HttpPost]
         public void Post([FromBody] Pizza Pizza)
         {

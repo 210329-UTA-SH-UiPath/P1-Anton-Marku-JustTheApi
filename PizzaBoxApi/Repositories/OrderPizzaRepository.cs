@@ -18,6 +18,10 @@ namespace PizzaBoxApi.Repositories
         {
             var Order = _context.Orders.Find(item.OrderId);
             var Pizza = _context.Pizzas.Find(item.PizzaId);
+            if (Order.OrderPizzas == null)
+            {
+                Order.OrderPizzas = new List<OrderPizza>();
+            }
             if(Order.OrderPizzas.Count() < 50 && Order.TotalPrice + Pizza.Price < 250)
             {
                 Order.TotalPrice += Pizza.Price;
@@ -31,6 +35,9 @@ namespace PizzaBoxApi.Repositories
             var item = _context.OrderPizzas.Find(id);
             if(item != null)
             {
+                var order = _context.Orders.Find(item.OrderId);
+                var pizza = _context.Pizzas.Find(item.PizzaId);
+                order.TotalPrice -= pizza.Price;
                 _context.OrderPizzas.Remove(item);
                 _context.SaveChanges();
             }

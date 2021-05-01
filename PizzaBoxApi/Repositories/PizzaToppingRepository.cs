@@ -16,7 +16,7 @@ namespace PizzaBoxApi.Repositories
 
         public void Add(PizzaTopping item)
         {
-            if(_context.PizzaToppings.Where(p => p.Id == item.PizzaId).ToList().Count() < 5)
+            if(_context.PizzaToppings.Where(p => p.PizzaId == item.PizzaId).ToList().Count() < 5)
             {
                 var pizza = _context.Pizzas.Find(item.PizzaId);
                 var orderPizza = _context.OrderPizzas.SingleOrDefault(p => p.PizzaId == pizza.Id);

@@ -49,7 +49,7 @@ namespace PizzaBoxApi.Repositories
                 customer.StoreVisitTime = DateTime.Now;
                 customer.LastTimeOrdered = DateTime.Now;
             }
-            if(customer.StoreId != item.StoreId && time.Value.AddHours(24) < item.DateTime)
+            if(customer.StoreId != item.StoreId && customer.StoreVisitTime.Value.AddHours(24) < item.DateTime)
             {
                 _context.Orders.Add(item);
                 customer.StoreId = item.StoreId;
