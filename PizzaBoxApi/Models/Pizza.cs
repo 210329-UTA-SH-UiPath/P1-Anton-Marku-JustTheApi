@@ -17,5 +17,7 @@ namespace PizzaBoxApi.Models
         public virtual Size Size { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
+        public ICollection<PizzaTopping> PizzaToppings { get; set; }
+        public ICollection<OrderPizza> OrderPizzas { get; set; }
     }
 }

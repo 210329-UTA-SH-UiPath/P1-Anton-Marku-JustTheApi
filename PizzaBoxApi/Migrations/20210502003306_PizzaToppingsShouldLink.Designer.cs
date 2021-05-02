@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaBoxApi.Models;
 
 namespace PizzaBoxApi.Migrations
 {
     [DbContext(typeof(PizzaBoxContext))]
-    partial class PizzaBoxContextModelSnapshot : ModelSnapshot
+    [Migration("20210502003306_PizzaToppingsShouldLink")]
+    partial class PizzaToppingsShouldLink
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,7 +253,7 @@ namespace PizzaBoxApi.Migrations
                         .IsRequired();
 
                     b.HasOne("PizzaBoxApi.Models.Pizza", "Pizza")
-                        .WithMany("OrderPizzas")
+                        .WithMany()
                         .HasForeignKey("PizzaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -316,8 +318,6 @@ namespace PizzaBoxApi.Migrations
 
             modelBuilder.Entity("PizzaBoxApi.Models.Pizza", b =>
                 {
-                    b.Navigation("OrderPizzas");
-
                     b.Navigation("PizzaToppings");
                 });
 

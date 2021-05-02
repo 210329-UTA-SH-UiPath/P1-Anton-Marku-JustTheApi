@@ -13,5 +13,6 @@ namespace PizzaBoxApi.Models
         public int Id { get; set; }
         public string Type { get; set; }
         public double Price { get; set; }
+        public ICollection<PizzaTopping> PizzaToppings { get; set; }
     }
 }

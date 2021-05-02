@@ -24,6 +24,17 @@ namespace PizzaBoxApi.Models
                 .WithMany(a => a.Orders)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<OrderPizza>()
+                .HasOne(p => p.Pizza)
+                .WithMany(t => t.OrderPizzas)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Pizza>()
+                .HasMany(t => t.PizzaToppings)
+                .WithOne(p => p.Pizza)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
         }
 
         public DbSet<Crust> Crusts { get; set; }
