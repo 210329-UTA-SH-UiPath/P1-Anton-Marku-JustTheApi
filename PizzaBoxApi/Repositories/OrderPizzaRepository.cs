@@ -1,4 +1,5 @@
-﻿using PizzaBoxApi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using PizzaBoxApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,14 @@ namespace PizzaBoxApi.Repositories
             {
                 Order.OrderPizzas = new List<OrderPizza>();
             }
-            if(Order.OrderPizzas.Count() < 50 && Order.TotalPrice + Pizza.Price < 250)
+            if(Order.OrderPizzas.Count() < 50 && Order.TotalPrice + Pizza.Price <= 250)
             {
                 Order.TotalPrice += Pizza.Price;
                 _context.OrderPizzas.Add(item);
                 _context.SaveChanges();
             }
         }
-
+        [HttpDelete("{id}")]
         public void DeleteOne(int id)
         {
             var item = _context.OrderPizzas.Find(id);
