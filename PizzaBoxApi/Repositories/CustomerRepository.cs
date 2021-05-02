@@ -26,8 +26,11 @@ namespace PizzaBoxApi.Repositories
 
         public void Add(Customer item)
         {
-            _context.Customers.Add(item);
-            _context.SaveChanges();
+            if (_context.Customers.SingleOrDefault(c => c.Name == item.Name) == null)
+            {
+                _context.Customers.Add(item);
+                _context.SaveChanges();
+            }
         }
 
 
