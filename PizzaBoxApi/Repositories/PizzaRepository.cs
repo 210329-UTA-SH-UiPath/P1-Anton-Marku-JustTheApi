@@ -15,7 +15,7 @@ namespace PizzaBoxApi.Repositories
         }
         public List<Pizza> GetPresets()
         {
-            return _context.Pizzas.Where(x => x.Id == 4 || x.Id == 6 || x.Id == 7).ToList();
+            return _context.Pizzas.Where(x => x.Id == 13 || x.Id == 14 || x.Id == 15).ToList();
         }
         public void Add(Pizza item)
         {
@@ -31,7 +31,7 @@ namespace PizzaBoxApi.Repositories
         }
         public List<Pizza> GetAll()
         {
-            return _context.Pizzas.Where(x => x.Id != 4 && x.Id != 6 && x.Id != 7).ToList();
+            return _context.Pizzas.Where(x => x.Id != 13 && x.Id != 14 && x.Id != 15).ToList();
         }
 
 

@@ -19,15 +19,18 @@ namespace PizzaBoxApi.Repositories
         {
             var Order = _context.Orders.Find(item.OrderId);
             var Pizza = _context.Pizzas.Find(item.PizzaId);
-            if (Order.OrderPizzas == null)
+            if (Order != null && Pizza != null)
             {
-                Order.OrderPizzas = new List<OrderPizza>();
-            }
-            if(Order.OrderPizzas.Count() < 50 && Order.TotalPrice + Pizza.Price <= 250)
-            {
-                Order.TotalPrice += Pizza.Price;
-                _context.OrderPizzas.Add(item);
-                _context.SaveChanges();
+                if (Order.OrderPizzas == null)
+                {
+                    Order.OrderPizzas = new List<OrderPizza>();
+                }
+                if (Order.OrderPizzas.Count() < 50 && Order.TotalPrice + Pizza.Price <= 250)
+                {
+                    Order.TotalPrice += Pizza.Price;
+                    _context.OrderPizzas.Add(item);
+                    _context.SaveChanges();
+                }
             }
         }
         [HttpDelete("{id}")]
